@@ -6,7 +6,7 @@
       <router-link to="/statistics">Statistics</router-link>
       <router-link to="/settings">Settings</router-link>
     </div>
-    <router-view class="grid" />
+    <router-view class="" />
   </div>
 </template>
 
@@ -21,6 +21,8 @@
   --color-yellow: #ffbc42;
   --color-red: #ef3054;
   --color-white: #f2f2f2;
+  --color-glass: rgba(255, 255, 255, 0.308);
+  --radius: 8px;
 }
 
 * {
@@ -33,7 +35,15 @@ html {
 body {
   margin: 0;
   background-color: #0093e9;
-  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  background-image: linear-gradient(
+    160deg,
+    #39b4bc 0%,
+    #433fe9 50%,
+    #349bfa 100%
+  );
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
 }
 h1,
 h2,
@@ -62,6 +72,7 @@ h3 {
 
 h4 {
   font-size: 1.953rem;
+  margin-top: 16px;
 }
 
 h5 {
@@ -70,6 +81,7 @@ h5 {
 
 h6 {
   font-size: 1.25rem;
+  margin-top: 0;
 }
 
 p {
@@ -105,7 +117,7 @@ p {
 
 #nav a.router-link-exact-active {
   color: var(--color-yellow);
-  border-bottom: 4px var(--color-yellow) solid;
+  border-bottom: 2px var(--color-yellow) solid;
 }
 
 .grid {
