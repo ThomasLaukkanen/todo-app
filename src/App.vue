@@ -6,7 +6,7 @@
       <router-link to="/statistics">Statistics</router-link>
       <router-link to="/settings">Settings</router-link>
     </div>
-    <router-view class="" />
+    <router-view />
   </div>
 </template>
 
@@ -43,7 +43,7 @@ body {
   );
   background-repeat: no-repeat;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 h1,
 h2,

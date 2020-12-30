@@ -66,6 +66,7 @@
         <h4>Tasks</h4>
       </div>
     </form>
+    <AddTodo></AddTodo>
   </div>
 </template>
 
@@ -129,8 +130,10 @@ form textarea {
   background-color: var(--color-glass);
   color: var(--color-white);
 }
-#addNewButton :hover {
+#addNewButton:hover {
   background-color: rgba(255, 255, 255, 0.705);
+  color: var(--color-black);
+  cursor: pointer;
 }
 
 .timers {
@@ -143,11 +146,13 @@ form textarea {
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
+import AddTodo from '@/components/AddTodo.vue';
 
 export default {
   name: 'Todo',
   components: {
     HelloWorld,
+    AddTodo,
   },
 };
 </script>
