@@ -57,9 +57,9 @@
 <script>
 // import AddTodo from '@/components/AddTodo.vue';
 
-import AddTodo from './AddTodo.vue';
+import AddTodo from './AddTodo.vue'
 export default {
   components: { AddTodo },
   name: 'RightForm',
-};
+}
 </script>

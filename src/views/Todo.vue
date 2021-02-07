@@ -23,8 +23,8 @@
 <script>
 // @ is an alias to /src
 
-import LeftForm from '@/components/LeftForm';
-import RightForm from '@/components/RightForm';
+import LeftForm from '@/components/LeftForm'
+import RightForm from '@/components/RightForm'
 
 export default {
   name: 'Todo',
@@ -32,5 +32,5 @@ export default {
     LeftForm,
     RightForm,
   },
-};
+}
 </script>

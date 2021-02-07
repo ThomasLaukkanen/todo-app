@@ -87,6 +87,9 @@
   max-height: 20px;
   width: 100px;
 }
+.timers img {
+  cursor: pointer;
+}
 
 ul {
   padding-left: 0px;
@@ -121,7 +124,7 @@ export default {
       todos: [],
       taskName: '',
       done: false,
-    };
+    }
   },
   methods: {
     addNewTask() {
@@ -129,13 +132,13 @@ export default {
         this.todos.push({
           title: this.taskName,
           done: false,
-        });
+        })
       }
-      this.taskName = '';
+      this.taskName = ''
     },
     removeTask(index) {
-      this.todos.splice(index, 1);
+      this.todos.splice(index, 1)
     },
   },
-};
+}
 </script>
