@@ -31,6 +31,7 @@
 
 html {
   margin: 0;
+  min-height: 100%;
 }
 body {
   margin: 0;
@@ -41,9 +42,7 @@ body {
     #433fe9 50%,
     #349bfa 100%
   );
-  background-repeat: no-repeat;
-  height: 100vh;
-  /* overflow: hidden; */
+  min-height: 100%;
 }
 h1,
 h2,
