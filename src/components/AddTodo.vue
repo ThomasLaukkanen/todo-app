@@ -1,23 +1,25 @@
 <template>
   <form @submit.prevent="addNewTask" class="rightForm">
-    <input
-      type="text"
-      id="addNewTask"
-      placeholder="Add new Task"
-      v-model="taskName"
-      required
-    />
-    <input type="button" value="Add" id="addNewButton" @click="addNewTask" />
-    <div class="timers">
-      <img
-        @onclick="addPomodoroTime"
-        src="../assets/timer-black-18dp.svg"
-        alt="timer"
+    <div>
+      <input
+        type="text"
+        id="addNewTask"
+        placeholder="Add new Task"
+        v-model="taskName"
+        required
       />
-      <img src="../assets/timer-black-18dp.svg" alt="timer" />
-      <img src="../assets/timer-black-18dp.svg" alt="timer" />
-      <img src="../assets/timer-black-18dp.svg" alt="timer" />
-      <img src="../assets/timer-black-18dp.svg" alt="timer" />
+      <input type="button" value="Add" id="addNewButton" @click="addNewTask" />
+      <div class="timers">
+        <img
+          @onclick="addPomodoroTime"
+          src="../assets/timer-black-18dp.svg"
+          alt="timer"
+        />
+        <img src="../assets/timer-black-18dp.svg" alt="timer" />
+        <img src="../assets/timer-black-18dp.svg" alt="timer" />
+        <img src="../assets/timer-black-18dp.svg" alt="timer" />
+        <img src="../assets/timer-black-18dp.svg" alt="timer" />
+      </div>
     </div>
     <h4>Tasks</h4>
     <ul>
@@ -41,7 +43,8 @@
     background-color: var(--color-glass);
     border-radius: var(--radius);
     border: none;
-    width: 100%;
+    display: inline-block;
+
     height: 36px;
     margin-top: 24px;
     font-family: 'Mukta', sans-serif;
@@ -83,12 +86,17 @@
     justify-content: space-between;
     align-items: center;
   }
-
+  .rightForm {
+    border: 1px solid black;
+  }
   .timers {
-    margin-left: 80%;
+    /* margin-left: 80%;
     margin-top: -26px;
     max-height: 20px;
+    */
+    display: inline-block;
     width: 100px;
+    border: 1px solid black;
   }
   .timers img {
     cursor: pointer;
