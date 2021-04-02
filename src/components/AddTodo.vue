@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="addNewTask" class="rightForm">
-    <div>
+    <div class="todoField">
       <input
         type="text"
         id="addNewTask"
@@ -8,7 +8,7 @@
         v-model="taskName"
         required
       />
-      <input type="button" value="Add" id="addNewButton" @click="addNewTask" />
+
       <div class="timers">
         <img
           @onclick="addPomodoroTime"
@@ -21,39 +21,65 @@
         <img src="../assets/timer-black-18dp.svg" alt="timer" />
       </div>
     </div>
-    <h4>Tasks</h4>
+    <h4>Todos</h4>
     <ul>
       <li v-for="(todo, index) in todos" :key="index" class="todoItem">
         <input type="checkbox" v-model="todo.done" />
+
         {{ todo.title }}
-        <input
-          type="button"
-          value="Remove"
-          id="removeButton"
-          @click="removeTask(index)"
-        />
+
+        <span>
+          {{ todo.dateAdded }}
+        </span>
+
+        <button @click="removeTask(index)" class="removeButton">
+          <svg
+            width="14"
+            height="15"
+            viewBox="0 0 14 15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.5 5.5C4.63261 5.5 4.75979 5.55268 4.85355 5.64645C4.94732 5.74021 5 5.86739 5 6V12C5 12.1326 4.94732 12.2598 4.85355 12.3536C4.75979 12.4473 4.63261 12.5 4.5 12.5C4.36739 12.5 4.24021 12.4473 4.14645 12.3536C4.05268 12.2598 4 12.1326 4 12V6C4 5.86739 4.05268 5.74021 4.14645 5.64645C4.24021 5.55268 4.36739 5.5 4.5 5.5V5.5ZM7 5.5C7.13261 5.5 7.25979 5.55268 7.35355 5.64645C7.44732 5.74021 7.5 5.86739 7.5 6V12C7.5 12.1326 7.44732 12.2598 7.35355 12.3536C7.25979 12.4473 7.13261 12.5 7 12.5C6.86739 12.5 6.74021 12.4473 6.64645 12.3536C6.55268 12.2598 6.5 12.1326 6.5 12V6C6.5 5.86739 6.55268 5.74021 6.64645 5.64645C6.74021 5.55268 6.86739 5.5 7 5.5V5.5ZM10 6C10 5.86739 9.94732 5.74021 9.85355 5.64645C9.75979 5.55268 9.63261 5.5 9.5 5.5C9.36739 5.5 9.24021 5.55268 9.14645 5.64645C9.05268 5.74021 9 5.86739 9 6V12C9 12.1326 9.05268 12.2598 9.14645 12.3536C9.24021 12.4473 9.36739 12.5 9.5 12.5C9.63261 12.5 9.75979 12.4473 9.85355 12.3536C9.94732 12.2598 10 12.1326 10 12V6Z"
+              fill="black"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M13.5 3C13.5 3.26522 13.3946 3.51957 13.2071 3.70711C13.0196 3.89464 12.7652 4 12.5 4H12V13C12 13.5304 11.7893 14.0391 11.4142 14.4142C11.0391 14.7893 10.5304 15 10 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4H1.5C1.23478 4 0.98043 3.89464 0.792893 3.70711C0.605357 3.51957 0.5 3.26522 0.5 3V2C0.5 1.73478 0.605357 1.48043 0.792893 1.29289C0.98043 1.10536 1.23478 1 1.5 1H5C5 0.734784 5.10536 0.48043 5.29289 0.292893C5.48043 0.105357 5.73478 0 6 0L8 0C8.26522 0 8.51957 0.105357 8.70711 0.292893C8.89464 0.48043 9 0.734784 9 1H12.5C12.7652 1 13.0196 1.10536 13.2071 1.29289C13.3946 1.48043 13.5 1.73478 13.5 2V3ZM3.118 4L3 4.059V13C3 13.2652 3.10536 13.5196 3.29289 13.7071C3.48043 13.8946 3.73478 14 4 14H10C10.2652 14 10.5196 13.8946 10.7071 13.7071C10.8946 13.5196 11 13.2652 11 13V4.059L10.882 4H3.118ZM1.5 3V2H12.5V3H1.5Z"
+              fill="black"
+            />
+          </svg>
+        </button>
       </li>
     </ul>
   </form>
 </template>
 
-<style scoped>
-  #addNewTask {
-    color: var(--color-white);
+<style lang="scss" scoped>
+  .todoField {
+    position: relative;
     background-color: var(--color-glass);
     border-radius: var(--radius);
+  }
+  #addNewTask {
+    color: var(--color-white);
+    background-color: rgba(0, 0, 139, 0);
     border: none;
     display: inline-block;
-
+    position: relative;
     height: 36px;
-    margin-top: 24px;
+    width: 80%;
     font-family: 'Mukta', sans-serif;
     font-size: 1rem;
     padding: 16px;
   }
+  input:focus {
+    outline: none;
+  }
 
   #addNewButton {
-    margin-left: -64px;
+    /* margin-left: -64px; */
     border: none;
     height: 24px;
 
@@ -67,39 +93,44 @@
     cursor: pointer;
   }
 
-  #removeButton {
+  .timers {
+    height: 36px;
+    display: flex;
+    width: 100px;
+
+    position: absolute;
+    right: 8px;
+    top: 0;
+  }
+  .timers img {
+    cursor: pointer;
+  }
+
+  .removeButton {
     border: none;
     height: 24px;
     border-radius: 4px;
     background-color: var(--color-glass);
     color: var(--color-white);
+    height: 60px;
+    transition: 0.5s all;
   }
 
-  #removeButton:hover {
+  .removeButton:hover {
     background-color: rgba(255, 255, 255, 0.705);
-    color: var(--color-black);
+
     cursor: pointer;
+    background-color: red;
   }
 
   .todoItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    // display: flex;
+    // justify-content: space-between;
+    // // align-items: center;
   }
   .rightForm {
     border: 1px solid black;
-  }
-  .timers {
-    /* margin-left: 80%;
-    margin-top: -26px;
-    max-height: 20px;
-    */
-    display: inline-block;
-    width: 100px;
-    border: 1px solid black;
-  }
-  .timers img {
-    cursor: pointer;
+    margin-top: 32px;
   }
 
   ul {
@@ -113,6 +144,19 @@
     border-radius: var(--radius);
     margin-top: 16px;
     padding: 16px;
+    position: relative;
+
+    button {
+      position: absolute;
+      right: 0px;
+      top: 0;
+      height: 32px;
+    }
+
+    span {
+      position: absolute;
+      right: 32px;
+    }
   }
 
   ul {
@@ -127,6 +171,7 @@
 </style>
 
 <script>
+  import moment from 'moment'
   export default {
     name: 'AddTodo',
     props: ['title'],
@@ -135,7 +180,8 @@
         todos: [],
         taskName: '',
         done: false,
-        timer: ''
+        timer: '',
+        dateAdded: ''
       }
     },
     methods: {
@@ -143,7 +189,9 @@
         if (this.taskName.length > 0) {
           this.todos.push({
             title: this.taskName,
-            done: false
+            done: false,
+            timer: '',
+            dateAdded: moment().format('D MMM')
           })
         }
         this.taskName = ''
