@@ -8,7 +8,7 @@
         v-model="taskName"
         required
       />
-
+      <button class="hide">add</button>
       <div class="timers">
         <img
           @onclick="addPomodoroTime"
@@ -26,12 +26,12 @@
       <li v-for="(todo, index) in todos" :key="index" class="todoItem">
         <input type="checkbox" v-model="todo.done" />
 
+        <img src="../assets/timer-black-18dp.svg" alt="timer" />
         {{ todo.title }}
 
         <span>
           {{ todo.dateAdded }}
         </span>
-
         <button @click="removeTask(index)" class="removeButton">
           <svg
             width="14"
@@ -77,7 +77,9 @@
   input:focus {
     outline: none;
   }
-
+  .hide {
+    display: none;
+  }
   #addNewButton {
     /* margin-left: -64px; */
     border: none;
@@ -129,7 +131,7 @@
     // // align-items: center;
   }
   .rightForm {
-    border: 1px solid black;
+    // border: 1px solid black;
     margin-top: 32px;
   }
 
@@ -153,9 +155,13 @@
       height: 32px;
     }
 
+    img {
+      position: absolute;
+      top: 38px;
+    }
     span {
       position: absolute;
-      right: 32px;
+      right: 40px;
     }
   }
 

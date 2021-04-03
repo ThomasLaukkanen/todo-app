@@ -1,12 +1,12 @@
 <template>
   <form class="leftForm">
-    <h4>Today im grateful for</h4>
+    <h4>Today im grateful for:</h4>
     <textarea name="" id="" rows="3"></textarea>
     <h4>Today would be great if i could</h4>
     <textarea name="" id="" rows="3"></textarea>
-    <h4>Body observation</h4>
+    <h4>Body observations</h4>
     <textarea name="" id="" rows="3"></textarea>
-    <h4>Lessons</h4>
+    <h4>Lessons of the day</h4>
     <textarea name="" id="" rows="3"></textarea>
   </form>
 </template>
