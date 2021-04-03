@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="addNewTask" class="rightForm">
+    {{ countPomodoros }}
     <div class="todoField">
       <input
         type="text"
@@ -11,14 +12,25 @@
       <button class="hide">add</button>
       <div class="timers">
         <img
-          @onclick="addPomodoroTime"
-          src="../assets/timer-black-18dp.svg"
+          @click="removePomodoroTime()"
+          src="../assets/arrow.svg"
           alt="timer"
+          class="downArrow"
         />
+        <input
+          type="number"
+          min="1"
+          max="12"
+          required
+          placeholder="1"
+          class="timeNumber"
+          v-model="timer"
+        />
+        <img @click="addPomodoroTime()" src="../assets/arrow.svg" alt="timer" />
+        <!-- <img src="../assets/timer-black-18dp.svg" alt="timer" />
         <img src="../assets/timer-black-18dp.svg" alt="timer" />
         <img src="../assets/timer-black-18dp.svg" alt="timer" />
-        <img src="../assets/timer-black-18dp.svg" alt="timer" />
-        <img src="../assets/timer-black-18dp.svg" alt="timer" />
+        <img src="../assets/timer-black-18dp.svg" alt="timer" /> -->
       </div>
     </div>
     <h4>Todos</h4>
@@ -26,7 +38,8 @@
       <li v-for="(todo, index) in todos" :key="index" class="todoItem">
         <input type="checkbox" v-model="todo.done" />
 
-        <img src="../assets/timer-black-18dp.svg" alt="timer" />
+        {{ todo.timer }}
+
         {{ todo.title }}
 
         <span>
@@ -104,6 +117,27 @@
     right: 8px;
     top: 0;
   }
+  .timeNumber {
+    width: 36px;
+    background-color: rgba(245, 245, 220, 0);
+    border: none;
+    color: var(--color-white);
+    text-align: center;
+    height: 36px;
+  }
+  .downArrow {
+    transform: rotate(180deg);
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield; /* Firefox */
+  }
   .timers img {
     cursor: pointer;
   }
@@ -155,10 +189,6 @@
       height: 32px;
     }
 
-    img {
-      position: absolute;
-      top: 38px;
-    }
     span {
       position: absolute;
       right: 40px;
@@ -186,8 +216,9 @@
         todos: [],
         taskName: '',
         done: false,
-        timer: '',
-        dateAdded: ''
+        timer: 1,
+        dateAdded: '',
+        finnishedTodos: []
       }
     },
     methods: {
@@ -196,9 +227,10 @@
           this.todos.push({
             title: this.taskName,
             done: false,
-            timer: '',
+            timer: this.timer,
             dateAdded: moment().format('D MMM')
           })
+          this.timer = 1
         }
         this.taskName = ''
       },
@@ -206,7 +238,33 @@
         this.todos.splice(index, 1)
       },
       addPomodoroTime() {
-        this.timer = 0.25
+        if (this.timer < 12) {
+          this.timer++
+        }
+      },
+      removePomodoroTime() {
+        if (this.timer > 1) {
+          this.timer--
+        }
+      },
+      finnished() {
+        // SEND TO STORE
+        this.$store.commit(
+          'addFinnishedTodo',
+          Object.assign({}, this.finnishedTodos)
+        )
+        // RESET DATA
+        this.finnishedTodos = []
+      }
+    },
+    computed: {
+      countPomodoros() {
+        let totalTime = 0
+        this.todos.forEach(element => {
+          totalTime += element.timer
+          return totalTime
+        })
+        return totalTime
       }
     }
   }

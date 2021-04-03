@@ -1,6 +1,6 @@
 <template>
   <div class="rightForm">
-    <h4>Things i want to accomplish today</h4>
+    <h4>Stats</h4>
     <section class="stats">
       <h6>
         Total
