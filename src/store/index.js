@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-
 export default new Vuex.Store({
   state: {
     finnishedTodos: [],
@@ -33,10 +32,13 @@ export default new Vuex.Store({
   actions: {},
   mutations: {
     addFinnishedTodo(state, todos) {
-      this.finnishedTodos.push(todos)
+      state.finnishedTodos.push(todos)
     },
     addTodos(state, todo) {
-      this.todos.push(todo)
+      state.todos.push(todo)
+    },
+    removeTask(state, index) {
+      state.todos.splice(index, 1)
     }
   }
 })

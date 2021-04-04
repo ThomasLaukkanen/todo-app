@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent="addNewTask" class="rightForm">
-    {{ countPomodoros }}
     <div class="todoField">
       <input
         type="text"
@@ -27,22 +26,21 @@
           v-model="timer"
         />
         <img @click="addPomodoroTime()" src="../assets/arrow.svg" alt="timer" />
-        <!-- <img src="../assets/timer-black-18dp.svg" alt="timer" />
-        <img src="../assets/timer-black-18dp.svg" alt="timer" />
-        <img src="../assets/timer-black-18dp.svg" alt="timer" />
-        <img src="../assets/timer-black-18dp.svg" alt="timer" /> -->
       </div>
     </div>
     <h4>Todos</h4>
     <ul>
-      <li v-for="(todo, index) in todos" :key="index" class="todoItem">
+      <li
+        v-for="(todo, index) in $store.state.todos"
+        :key="index"
+        class="todoItem"
+      >
         <input type="checkbox" v-model="todo.done" />
-
-        {{ todo.timer }}
-
+        <span class="timerTodo">
+          {{ todo.timer }}
+        </span>
         {{ todo.title }}
-
-        <span>
+        <span class="dateAddedTodo">
           {{ todo.dateAdded }}
         </span>
         <button @click="removeTask(index)" class="removeButton">
@@ -189,7 +187,7 @@
       height: 32px;
     }
 
-    span {
+    .dateAddedTodo {
       position: absolute;
       right: 40px;
     }
@@ -224,18 +222,32 @@
     methods: {
       addNewTask() {
         if (this.taskName.length > 0) {
-          this.todos.push({
-            title: this.taskName,
-            done: false,
-            timer: this.timer,
-            dateAdded: moment().format('D MMM')
-          })
+          // this.todos.push({
+          //   title: this.taskName,
+          //   done: false,
+          //   timer: this.timer,
+          //   dateAdded: moment().format('D MMM')
+          // })
+
+          this.$store.commit(
+            'addTodos',
+            Object.assign(
+              {},
+              {
+                title: this.taskName,
+                done: false,
+                timer: this.timer,
+                dateAdded: moment().format('D MMM')
+              }
+            )
+          )
           this.timer = 1
         }
         this.taskName = ''
       },
       removeTask(index) {
-        this.todos.splice(index, 1)
+        // this.todos.splice(index, 1)
+        this.$store.commit('removeTask', index)
       },
       addPomodoroTime() {
         if (this.timer < 12) {
@@ -247,6 +259,7 @@
           this.timer--
         }
       },
+
       finnished() {
         // SEND TO STORE
         this.$store.commit(
