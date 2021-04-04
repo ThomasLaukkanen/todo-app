@@ -27,9 +27,16 @@
       </div>
       <div>
         <h6>
-          Effectivity
+          Progress
           <br />
-          40%
+          {{
+            this.$store.state.finnishedTodos.length == 0
+              ? '0 %'
+              : (this.$store.state.todos.length /
+                  this.$store.state.finnishedTodos.length) *
+                  100 +
+                '%'
+          }}
         </h6>
         <h6>
           Pomodoros
@@ -56,9 +63,13 @@
     justify-content: space-evenly;
     padding: 8px;
     flex-wrap: wrap;
+    border: var(--border);
   }
   h6 {
     margin: 16px;
+  }
+  h4 {
+    margin-bottom: 16px;
   }
 </style>
 

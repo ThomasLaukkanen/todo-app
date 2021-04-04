@@ -13,6 +13,7 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
   /* CSS Variables */
   :root {
@@ -22,7 +23,8 @@
     --color-red: #ef3054;
     --color-white: #f2f2f2;
     --color-glass: rgba(255, 255, 255, 0.308);
-    --radius: 8px;
+    --radius: 2px;
+    --border: 1px rgba(240, 247, 221, 0.144) solid;
   }
 
   * {
@@ -32,16 +34,17 @@
   html {
     margin: 0;
     min-height: 100%;
+    overflow-y: scroll;
   }
   body {
     margin: 0;
     background-color: #0093e9;
-    background-image: linear-gradient(
+    /* background-image: linear-gradient(
       160deg,
       #39b4bc 0%,
       #433fe9 50%,
       #349bfa 100%
-    );
+    ); */
     min-height: 100%;
   }
   h1,
@@ -52,7 +55,7 @@
   h6,
   p,
   .caption {
-    font-family: 'Mukta', sans-serif;
+    font-family: 'Montserrat', 'Mukta', sans-serif;
     color: var(--color-white);
     margin-bottom: 0;
   }
