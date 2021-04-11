@@ -145,6 +145,9 @@
   .downArrow {
     transform: rotate(180deg) scale(1.5);
   }
+  .downArrow:hover {
+    fill: red;
+  }
   .upArrow {
     transform: scale(1.5);
   }
@@ -208,6 +211,7 @@
     }
     svg:hover {
       fill: var(--color-yellow);
+      cursor: pointer;
     }
     button {
       position: absolute;
