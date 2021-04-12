@@ -146,7 +146,6 @@
     transform: rotate(180deg) scale(1.5);
   }
   .downArrow:hover {
-    fill: red;
   }
   .upArrow {
     transform: scale(1.5);

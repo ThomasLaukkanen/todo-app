@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Todo from '../views/Todo.vue'
+import Timer from '../views/Timer.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
     name: 'Settings',
     component: () =>
       import(/*webpackChunkName: "settings" */ '../views/Settings.vue')
+  },
+  {
+    path: '/Timer',
+    name: 'Timer',
+    component: Timer
   }
 ]
 
