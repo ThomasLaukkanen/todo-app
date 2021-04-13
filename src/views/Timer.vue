@@ -61,4 +61,11 @@
     flex-direction: column;
     align-items: center;
   }
+  .pomodoro {
+    border: var(--border);
+    background-color: var(--color-glass);
+    color: var(--color-white);
+    padding: 16px;
+    border-radius: 4px;
+  }
 </style>
