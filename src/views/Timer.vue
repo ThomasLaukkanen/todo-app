@@ -1,13 +1,21 @@
 <template>
   <div class="container">
     <div class="pomodoro">
-      <div class="pomodoroLabel">{{ currentTask }}</div>
-      <div class="pomodoroCounts">{{ currentPomodoroCount }}</div>
-      <div class="pomodoroCounter">{{ currentTime }}</div>
+      <div class="pomodoroLabel">
+        <h3>{{ currentTask }}</h3>
+      </div>
+      <div class="pomodoroCounts">
+        <h3>{{ currentPomodoroCount }}</h3>
+      </div>
+      <div class="pomodoroCounter">
+        <h2>{{ currentTime }}</h2>
+      </div>
     </div>
     <div class="Buttons">
-      <button @click="run" v-if="!$store.state.timer.running">Start</button>
-      <button @click="pause" v-if="$store.state.timer.running">Pause</button>
+      <button @click="run">
+        <b>{{ buttonMsg }}</b>
+      </button>
+      <!-- <button @click="pause" v-if="$store.state.timer.running">Pause</button> -->
     </div>
   </div>
 </template>
@@ -21,13 +29,22 @@
         sec: 60,
         running: false,
         paused: false,
-        stopped: true
+        stopped: true,
+        timer: null,
+        buttonMsg: 'Start'
       }
     },
     methods: {
       run: function() {
-        setInterval(() => this.countdown(), 1000)
-        this.$store.commit('runTimer', true)
+        if (this.$store.state.timer.running !== true) {
+          this.buttonMsg = 'Stop'
+          this.timer = setInterval(() => this.countdown(), 1000)
+          this.$store.commit('runTimer', true)
+        } else {
+          this.buttonMsg = 'Start'
+          clearInterval(this.timer)
+          this.$store.commit('runTimer', false)
+        }
       },
       pause: function() {
         clearInterval()
@@ -67,5 +84,22 @@
     color: var(--color-white);
     padding: 16px;
     border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  button {
+    margin-top: 16px;
+    border: var(--border);
+    background-color: var(--color-glass);
+    color: var(--color-white);
+    padding: 16px;
+    border-radius: 4px;
+  }
+  h3 {
+    margin: 32px;
+  }
+  .pomodoroCounter {
+    text-align: center;
   }
 </style>

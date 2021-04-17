@@ -38,7 +38,7 @@ export default new Vuex.Store({
     timer: {
       label: 'Add timer',
       min: 25,
-      sec: 59,
+      sec: 0,
       running: false,
       paused: false,
       stopped: true
@@ -59,7 +59,12 @@ export default new Vuex.Store({
       state.timer.running = start
     },
     countDown(state) {
-      state.timer.sec--
+      if (state.timer.sec == 0) {
+        state.timer.min--
+        state.timer.sec = 59
+      } else {
+        state.timer.sec--
+      }
     }
   }
 })
