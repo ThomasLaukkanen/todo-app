@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <button>
+    <button @click="pushPage">
       <strong>
         Start timer
       </strong>
@@ -14,7 +14,13 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    methods: {
+      pushPage() {
+        this.$router.push({ name: 'Timer' })
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

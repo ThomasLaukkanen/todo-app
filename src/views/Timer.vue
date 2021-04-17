@@ -38,11 +38,16 @@
       run: function() {
         if (this.$store.state.timer.running !== true) {
           this.buttonMsg = 'Stop'
-          this.timer = setInterval(() => this.countdown(), 1000)
+          // this.timer = setInterval(() => this.countdown(), 1000)
+          this.$store.commit(
+            'setInterval',
+            setInterval(() => this.countdown(), 1000)
+          )
           this.$store.commit('runTimer', true)
         } else {
           this.buttonMsg = 'Start'
-          clearInterval(this.timer)
+          // clearInterval(this.timer)
+          this.$store.commit('setInterval', 'clear')
           this.$store.commit('runTimer', false)
         }
       },
@@ -62,7 +67,18 @@
       currentTime: function() {
         let minutes = this.$store.state.timer.min
         let seconds = this.$store.state.timer.sec
-        return `${minutes}:${seconds}`
+        if (
+          this.$store.state.timer.sec == 0 &&
+          this.$store.state.timer.min == 0
+        ) {
+          return this.$store.commit('setInterval', 'clear')
+        } else if (this.$store.state.timer.sec < 10) {
+          let formatsec = '0' + seconds
+
+          return `${minutes}:${formatsec}`
+        } else {
+          return `${minutes}:${seconds}`
+        }
       },
       currentPomodoroCount: function() {
         return this.$store.state.todos[0].timer

@@ -32,7 +32,7 @@ export default new Vuex.Store({
         dateAdded: '12 Apr',
         done: false,
         timer: 10,
-        title: 'FINNISH THE TODO'
+        title: 'Finnish the code for todo app'
       }
     ],
     timer: {
@@ -41,7 +41,8 @@ export default new Vuex.Store({
       sec: 0,
       running: false,
       paused: false,
-      stopped: true
+      stopped: true,
+      interval: null
     }
   },
   actions: {},
@@ -65,6 +66,15 @@ export default new Vuex.Store({
       } else {
         state.timer.sec--
       }
+      if (state.timer.sec == 0 && state.timer.min == 0) {
+        state.todos[0].timer--
+      }
+    },
+    setInterval(state, timer) {
+      if (timer == 'clear') {
+        clearInterval(state.timer.interval)
+      }
+      state.timer.interval = timer
     }
   }
 })

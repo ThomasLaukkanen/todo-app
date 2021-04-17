@@ -27,7 +27,7 @@ const routes = [
       import(/*webpackChunkName: "settings" */ '../views/Settings.vue')
   },
   {
-    path: '/Timer',
+    path: '/timer',
     name: 'Timer',
     component: Timer
   }
