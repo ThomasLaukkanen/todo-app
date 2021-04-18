@@ -15,7 +15,6 @@
       <button @click="run">
         <b>{{ buttonMsg }}</b>
       </button>
-      <!-- <button @click="pause" v-if="$store.state.timer.running">Pause</button> -->
     </div>
   </div>
 </template>
@@ -38,7 +37,6 @@
       run: function() {
         if (this.$store.state.timer.running !== true) {
           this.buttonMsg = 'Stop'
-          // this.timer = setInterval(() => this.countdown(), 1000)
           this.$store.commit(
             'setInterval',
             setInterval(() => this.countdown(), 1000)
@@ -46,7 +44,7 @@
           this.$store.commit('runTimer', true)
         } else {
           this.buttonMsg = 'Start'
-          // clearInterval(this.timer)
+
           this.$store.commit('setInterval', 'clear')
           this.$store.commit('runTimer', false)
         }
