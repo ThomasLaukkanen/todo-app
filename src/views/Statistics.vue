@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <h1>Under construction</h1>
     <h4>You have been grateful for</h4>
     <h4>Things that would be great if you did</h4>
     <h4>Body observations</h4>
@@ -13,5 +12,10 @@
     text-align: center;
   }
   .about {
+    display: flex;
+    justify-content: center;
+  }
+  h4 {
+    margin: 32px;
   }
 </style>
